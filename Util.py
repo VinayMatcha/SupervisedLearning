@@ -13,6 +13,11 @@ def get_data(limit = None):
     return X, Y
 
 
+def get_simple_xor():
+    X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+    Y = np.array([0, 1, 1, 0])
+    return X, Y
+
 
 def get_xor():
     X = np.zeros((200, 2))
