@@ -13,17 +13,28 @@ plt.xlabel("State Abbrevation")
 plt.ylabel("Opioid Death Density")
 # plt.show()
 # plt.savefig("Images/OddForDM")
+diff = np.max(df['ODD']) - np.min(df['ODD'])
 n = len(df['Deaths'])
+s = set(df.ODD)
+print(len(s), " hhhihib")
 simm = [[" "] + (df['Abbrev'].values.tolist())]
 for i in range(50):
     p = df['ODD'][i]
-    arr1 = [abs(p-x) for x in df.ODD]
-    # aMax = np.max(arr1)
-    # arr1 = np.abs(arr1-aMax/aMax)
-    # arr1 = [df['Abbrev'][i]] + arr1.tolist()
-    aMax = np.argmax(arr1)
+    arr1 = [abs(p-x)/diff for x in df.ODD]
+    aMax = np.max(arr1)
+    aar2 = []
+    # for j in arr1:
+    #     if j == aMax:
+    #         aar2.append(0)
+    #     else:
+    #         aar2.append(j)
+    # arr1 = aar2
     arr1[i] = 1
-    arr1[aMax] = 0
     arr1 = [df['Abbrev'][i]] + arr1
     simm.append(arr1)
-    print(simm[i])
+    #print(simm[i])
+
+for i in range(1,50):
+    for j in range(1, 50):
+        if(simm[i][j] != simm[j][i]):
+            print(df['Abbrev'][i] + " " + df['Abbrev'][j])
